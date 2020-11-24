@@ -5,20 +5,19 @@ function getFillings(sandwich) {
 
 function isFromManchester(person) {
   if (person === undefined) throw new Error("person is required");
-  return person.city.toLowerCase() === "manchester"; 
+  return person.city.toLowerCase() === "manchester";
 }
 
 function getBusNumbers(people) {
   if (people === undefined) throw new Error("people is required");
- return Math.ceil(people / 40);
+  return Math.ceil(people / 40);
 }
 
 function countSheep(arr) {
   if (arr === undefined) throw new Error("arr is required");
   let numberOfSheep = 0;
   arr.forEach((animal) => {
-    if (animal.toLowerCase() === "sheep")
-    {
+    if (animal.toLowerCase() === "sheep") {
       numberOfSheep++;
     }
   });
