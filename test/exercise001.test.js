@@ -16,11 +16,14 @@ describe("capitalize", () => {
     expect(capitalize("hello")).toBe("Hello");
     expect(capitalize("the quick fox")).toBe("The quick fox");
     expect(capitalize("oh no, bears!!!")).toBe("Oh no, bears!!!");
+    expect(capitalize("t")).toBe("T");
+    expect(capitalize("?toast")).toBe("?toast");
   });
 
   test("does nothing if the string is already capitalized", () => {
     expect(capitalize("Hello")).toBe("Hello");
   });
+
 });
 
 describe("generateInitials", () => {
@@ -68,10 +71,12 @@ describe("getSalePrice", () => {
 describe("getMiddleCharacter", () => {
   test("returns the middle character from a string of odd length", () => {
     expect(getMiddleCharacter("bears!!!!")).toBe("s");
+    expect(getMiddleCharacter("b")).toBe("b");
   });
 
   test("returns the middle 2 characters from a string of even length", () => {
     expect(getMiddleCharacter("help!!")).toBe("lp");
+    expect(getMiddleCharacter("he")).toBe("he")
   });
 });
 
@@ -118,9 +123,10 @@ describe("countLinuxUsers", () => {
       { name: "Jane", OS: "Mint 19.1", type: "Linux" },
       { name: "Jen", OS: "CentOS 7", type: "Linux" },
       { name: "David", OS: "Fedora 28", type: "Linux" },
+      { name: "David", OS: "Fedora 28", type: "liNux" },
       { name: "Pedro", OS: "Windows 95", type: "Windows" }
     ];
-    expect(countLinuxUsers(users)).toBe(5);
+    expect(countLinuxUsers(users)).toBe(6);
   });
 });
 
@@ -130,12 +136,16 @@ describe("getMeanScore", () => {
     expect(getMeanScore([88, 86, 93])).toBe(89);
   });
 
+  test("returns 0 if there are no scores", () => {
+    expect(getMeanScore([])).toBe(0);
+  });
+
   test("returns the mean to 2 decimal places", () => {
     expect(getMeanScore([24, 44, 56, 11, 12, 17, 34])).toBe(28.29);
   });
 });
 
-describe("simpleFizzBuzz", () => {
+describe("simpleFizzBuzz", () => { 
   test("returns 'fizz' if the number is divisible by 3", () => {
     expect(simpleFizzBuzz(3)).toBe("fizz");
   });
