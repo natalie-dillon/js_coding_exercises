@@ -1,6 +1,6 @@
 const {
   capitalize
-} = require("./exercise001");
+} = require("./exercise001.js");
 
 function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
