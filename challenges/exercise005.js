@@ -2,7 +2,7 @@ const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
   let ind = nums.findIndex(num => num === n);
-  if (ind === -1 || ind === nums.length - 1){
+  if (ind === -1 || ind === nums.length - 1) {
     return null;
   }
   return nums[ind + 1];
@@ -14,12 +14,11 @@ const count1sand0s = str => {
     1: 0,
     0: 0
   };
-  for (let i=0; i< str.length; i++){
+  for (let i = 0; i < str.length; i++) {
     let chr = str[i];
-    if (frequencies[chr] !== undefined)
-    {
+    if (frequencies[chr] !== undefined) {
       frequencies[chr] += 1;
-    }    
+    }
   }
   return frequencies;
 };
@@ -28,8 +27,8 @@ const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
   let str = n.toString();
   let reverseStr = "";
-  for (let i=str.length - 1; i >= 0; i--){
-    if (str[i] != 0 || reverseStr.length > 0){
+  for (let i = str.length - 1; i >= 0; i--) {
+    if (str[i] != 0 || reverseStr.length > 0) {
       reverseStr += str[i];
     }
   }
@@ -39,9 +38,8 @@ const reverseNumber = n => {
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
   let total = 0;
-  for (let i=0; i< arrs.length; i++){
-    for (let j=0; j< arrs[i].length; j++)
-    {
+  for (let i = 0; i < arrs.length; i++) {
+    for (let j = 0; j < arrs[i].length; j++) {
       total += arrs[i][j];
     }
   }
@@ -50,7 +48,7 @@ const sumArrays = arrs => {
 
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
-  if (arr.length < 2){
+  if (arr.length < 2) {
     return arr;
   }
   let temp = arr[0];
@@ -62,10 +60,9 @@ const arrShift = arr => {
 const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-  for (const needle in haystack){
+  for (const needle in haystack) {
     let val = haystack[needle].toString().toLowerCase();
-    if (val.includes(searchTerm.toLowerCase()))
-    {
+    if (val.includes(searchTerm.toLowerCase())) {
       return true;
     }
   }
@@ -77,12 +74,12 @@ const getWordFrequencies = str => {
   const frequencies = {};
   const words = str.split(" ");
   words.forEach(word => {
-      const cleanWord = word.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
-      if (frequencies[cleanWord] === undefined){
-        frequencies[cleanWord] = 1;
-      } else {
-        frequencies[cleanWord] += 1;
-      }
+    const cleanWord = word.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+    if (frequencies[cleanWord] === undefined) {
+      frequencies[cleanWord] = 1;
+    } else {
+      frequencies[cleanWord] += 1;
+    }
   });
   return frequencies;
 };

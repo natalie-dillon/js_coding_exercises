@@ -6,6 +6,13 @@
  */
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
+  let sum = 0;
+  arr.forEach(num => {
+    if ((num % 3 === 0) || (num % 5 === 0)) {
+      sum += num;
+    }
+  });
+  return sum;
 };
 
 /**
@@ -15,6 +22,14 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (str.length === 0) return false;
+  for (let i = 0; i < str.length; i++) {
+    let code = str[i].toUpperCase();
+    if (code !== 'A' && code !== 'C' && code !== 'G' && code !== 'T') {
+      return false;
+    }
+  }
+  return true;
 };
 
 /**
@@ -24,6 +39,28 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (!isValidDNA(str)) throw new Error("str must be valid DNA");
+  let returnStr = "";
+  for (let i = 0; i < str.length; i++) {
+    let code = str[i].toUpperCase();
+    switch (code) {
+      case "A":
+        returnStr += "T";
+        break;
+      case "C":
+        returnStr += "G";
+        break;
+      case "T":
+        returnStr += "A";
+        break;
+      case "G":
+        returnStr += "C";
+        break;
+      default:
+        break;
+    }
+  }
+  return returnStr;
 };
 
 /**
@@ -33,6 +70,14 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
+  if (n <= 1) return false;
+  if (!Number.isInteger(n)) return false;
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
 };
 
 /**
@@ -49,6 +94,16 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+  if ((n < 0) || !Number.isInteger(n)) throw new Error("n must be a positive integer");
+  let arr = [];
+  for (let i = 0; i < n; i++) {
+    let row = [];
+    for (let j = 0; j < n; j++) {
+      row.push(fill);
+    }
+    arr.push(row)
+  }
+  return arr;
 };
 
 /**
@@ -66,6 +121,15 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  let count = 0;
+  staff.forEach((person) => {
+    person.rota.forEach((workDay) => {
+      if (workDay.toLowerCase() === day.toLowerCase()) {
+        count++;
+      }
+    })
+  });
+  return count >= 3;
 };
 
 module.exports = {
