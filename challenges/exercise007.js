@@ -4,6 +4,13 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+  if ((n < 0) || !Number.isInteger(n)) throw new Error("n must be a positive integer");
+  let str = n.toString();
+  let sum = 0;
+  for (let i = 0; i < str.length; i++) {
+    sum += Number(str[i]);
+  }
+  return sum;
 };
 
 /**
@@ -17,6 +24,17 @@ const sumDigits = n => {
 const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
+  if ((start < 0) || !Number.isInteger(start)) throw new Error("start must be a positive integer");
+  if ((end < 0) || !Number.isInteger(end)) throw new Error("end must be a positive integer");
+  if (step === undefined) step = 1;
+  if ((step < 0) || !Number.isInteger(step)) throw new Error("step must be a positive integer");
+  if (start > end) throw new Error("start must be less than or equal to end");
+  let range = [];
+  while (start <= end) {
+    range.push(start);
+    start += step;
+  }
+  return range;
 };
 
 /**
@@ -48,9 +66,25 @@ const createRange = (start, end, step) => {
  * For example, if passed the above users and the date "2019-05-04" the function should return ["beth_1234"] as she used over 100 minutes of screentime on that date.
  * @param {Array} users
  */
-const getScreentimeAlertList = (users, date) => {
+const getScreentimeAlertList = (users, dte) => {
   if (users === undefined) throw new Error("users is required");
-  if (date === undefined) throw new Error("date is required");
+  if (dte === undefined) throw new Error("date is required");
+  let screenAddicts = []
+  users.forEach(user => {
+    user.screenTime.forEach(screenDay => {
+      if (screenDay.date === dte) {
+        console.log("Find error");
+        let mins = 0;
+        for (let prop in screenDay.usage) {
+          mins += screenDay.usage[prop];
+        }
+        if (mins > 100) {
+          screenAddicts.push(user.username)
+        }
+      }
+    });
+  });
+  return screenAddicts;
 };
 
 /**
@@ -65,6 +99,11 @@ const getScreentimeAlertList = (users, date) => {
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  if (hexStr.length !== 7) throw new Error("hexStr must be seven characters");
+  const red = parseInt(hexStr.substring(1, 3), 16).toString(10);
+  const green = parseInt(hexStr.substring(3, 5), 16).toString(10);
+  const blue = parseInt(hexStr.substring(5, 7), 16).toString(10);
+  return `rgb(${red},${green},${blue})`
 };
 
 /**
@@ -79,7 +118,45 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  
+  //Rows
+  for (let i=0; i<3; i++){
+    if (board[i][0] === "X" && board[i][1] === "X" && board[i][2] === "X"){
+      return "X"
+    }
+    if (board[i][0] === "0" && board[i][1] === "0" &&  board[i][2] === "0"){
+      return "0"
+    }
+  }
+
+  //Columns
+  for (let i=0; i<3; i++){
+    if (board[0][i] === "X" && board[1][i] === "X" && board[2][i] === "X"){
+      return "X"
+    }
+    if (board[0][i] === "0" && board[1][i] === "0" &&  board[2][i] === "0"){
+      return "0"
+    }
+  }
+
+  //Diagonals
+  if (board[0][0] === "X" && board[1][1] === "X" && board[2][2] === "X"){
+    return "X"
+  }
+  if (board[0][0] === "0" && board[1][1] === "0" &&  board[2][2] === "0"){
+    return "0"
+  }
+  if (board[0][2] === "X" && board[1][1] === "X" && board[2][0] === "X"){
+    return "X"
+  }
+  if (board[0][1] === "0" && board[1][1] === "0" &&  board[2][0] === "0"){
+    return "0"
+  }
+
+  return null;
+
 };
+
 
 module.exports = {
   sumDigits,

@@ -34,11 +34,11 @@ describe("isValidDNA", () => {
         expect(isValidDNA("GRTCA")).toBe(false);
         expect(isValidDNA("AC TG")).toBe(false);
         expect(isValidDNA("AG!Gc")).toBe(false);
-     })
+     });
 
      test("returns false if the string is empty", () => {
         expect(isValidDNA("")).toBe(false);
-     })
+     });
 });
 
 describe("getComplementaryDNA", () => {
@@ -46,12 +46,12 @@ describe("getComplementaryDNA", () => {
         expect(getComplementaryDNA("TACG")).toBe("ATGC");
         expect(getComplementaryDNA("ACTGGCA")).toBe("TGACCGT");
         expect(getComplementaryDNA("TG")).toBe("AC");
-    })
+    });
 
     test("throws if the string is not valid DNA", () => {
         expect(() => { getComplementaryDNA("GUCA"); }).toThrow("str must be valid DNA");
-    })
-})
+    });
+});
 
 describe("isItPrime", () => {
     test("returns true for prime numbers", () => {
@@ -61,7 +61,7 @@ describe("isItPrime", () => {
         expect(isItPrime(13)).toBe(true);
         expect(isItPrime(467)).toBe(true);
         expect(isItPrime(223)).toBe(true);
-    })
+    });
 
     test("returns false for non prime numbers or other inputs", () => {
         expect(isItPrime("Hello")).toBe(false);
@@ -70,8 +70,8 @@ describe("isItPrime", () => {
         expect(isItPrime(15)).toBe(false);
         expect(isItPrime(-13)).toBe(false);
         expect(isItPrime(0.25)).toBe(false);
-    })
-})
+    });
+});
 
 describe("createMatrix", () => {
     test("returns the correct matrix", () => {
@@ -86,13 +86,13 @@ describe("createMatrix", () => {
 
         const matrix3 = [["tre", "tre", "tre"], ["tre", "tre", "tre"], ["tre", "tre", "tre"]];
         expect(createMatrix(3, "tre")).toEqual(matrix3);
-    })
+    });
 
      test("throws if n is not a positive integer", () => {
          expect(() => createMatrix(-4, "meno quattro")).toThrow("n must be a positive integer");
          expect(() => createMatrix(2.5, "due e mezzo")).toThrow("n must be a positive integer");
-     })
-})
+     });
+});
 
 describe("areWeCovered", () => {
     test("returns true for three or more staff", () => {
@@ -103,5 +103,5 @@ describe("areWeCovered", () => {
         ];
         expect(areWeCovered(staff, "Tuesday")).toBe(true);
         expect(areWeCovered(staff, "Sunday")).toBe(false);
-    })   
-})
+    });   
+});
